@@ -12,7 +12,7 @@ contract ReentrancyVault {
         uint256 amount = balances[msg.sender];
         require(amount > 0, "No balance");
 
-        (bool sent, ) = msg.sender.call{value: amount}("");
+        (bool sent,) = msg.sender.call{value: amount}("");
         require(sent, "Transfer failed");
 
         balances[msg.sender] = 0;

@@ -31,22 +31,19 @@ contract ReentrancyTest is Test {
     }
 
     function testSafeVaultBlocksReentrancy() public {
-    safeVault.deposit{value: 5 ether}();
-    uint256 vaultBalanceBefore = address(safeVault).balance;
+        safeVault.deposit{value: 5 ether}();
+        uint256 vaultBalanceBefore = address(safeVault).balance;
 
-    // Attacker setup targeting SafeVault
-    address attackerEOA = address(0xBEEF);
-    vm.deal(attackerEOA, 1 ether);
+        // Attacker setup targeting SafeVault
+        address attackerEOA = address(0xBEEF);
+        vm.deal(attackerEOA, 1 ether);
 
-    // Direct low-level call from attacker address
-    vm.prank(attackerEOA);
-    (bool success, ) = address(safeVault).call(
-        abi.encodeWithSignature("withdraw()")
-    );
+        // Direct low-level call from attacker address
+        vm.prank(attackerEOA);
+        (bool success,) = address(safeVault).call(abi.encodeWithSignature("withdraw()"));
 
-    // Expect no success, no reentrancy allowed
-    assertTrue(!success, "Attack failed to execute withdraw");
-    assertEq(safeVault.getBalance(), vaultBalanceBefore, "SafeVault retains full balance");
+        // Expect no success, no reentrancy allowed
+        assertTrue(!success, "Attack failed to execute withdraw");
+        assertEq(safeVault.getBalance(), vaultBalanceBefore, "SafeVault retains full balance");
     }
-
 }

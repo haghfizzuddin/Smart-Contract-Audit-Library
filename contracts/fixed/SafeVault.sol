@@ -14,7 +14,7 @@ contract SafeVault {
 
         balances[msg.sender] = 0;
 
-        (bool sent, ) = msg.sender.call{value: amount}("");
+        (bool sent,) = msg.sender.call{value: amount}("");
         require(sent, "Transfer failed");
     }
 

