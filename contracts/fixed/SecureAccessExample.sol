@@ -13,7 +13,6 @@ contract SecureAccessExample is Ownable {
     }
 }
 
-
 // Note: This contract uses OpenZeppelin's Ownable contract to restrict access to the updatePrivilegedData function.
-// Only the owner of the contract can call this function, preventing unauthorized access to privileged data.        
+// Only the owner of the contract can call this function, preventing unauthorized access to privileged data.
 // This ensures that the contract is secure against unauthorized modifications to privileged data.

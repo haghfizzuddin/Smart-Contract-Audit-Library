@@ -15,4 +15,4 @@ contract AccessBypassExample {
 }
 // Note: This contract is vulnerable to access bypass issues.
 // The updatePrivilegedData function can be called by anyone, allowing unauthorized access to privileged data.
-// It should be restricted to the owner of the contract to prevent unauthorized modifications.  
+// It should be restricted to the owner of the contract to prevent unauthorized modifications.

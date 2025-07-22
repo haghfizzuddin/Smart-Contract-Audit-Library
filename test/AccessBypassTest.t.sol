@@ -22,16 +22,10 @@ contract AccessBypassTest is Test {
 
     function testAccessControlPreventsUnauthorizedUpdate() public {
         address attacker = address(0xBEEF);
-        vm.expectRevert(
-            abi.encodeWithSelector(
-                Ownable.OwnableUnauthorizedAccount.selector,
-                attacker
-            )
-        );
-    vm.prank(attacker);
-    fixedContract.updatePrivilegedData(999);
+        vm.expectRevert(abi.encodeWithSelector(Ownable.OwnableUnauthorizedAccount.selector, attacker));
+        vm.prank(attacker);
+        fixedContract.updatePrivilegedData(999);
     }
-
 }
 // Note: This test suite checks for access bypass vulnerabilities in the AccessBypassExample contract.
 // It ensures that the vulnerable contract allows unauthorized updates, while the fixed contract prevents them using OpenZeppelin's Ownable contract.
