@@ -21,14 +21,10 @@ contract ERC20Test is Test {
     }
 
     function testUnauthorizedMintFails() public {
-    address attacker = address(0xBEEF);
+        address attacker = address(0xBEEF);
 
-    vm.expectRevert(abi.encodeWithSelector(
-        Ownable.OwnableUnauthorizedAccount.selector,
-        attacker
-    ));
-    vm.prank(attacker);
-    fixedToken.mint(address(this), 1000000 ether);
-}
-
+        vm.expectRevert(abi.encodeWithSelector(Ownable.OwnableUnauthorizedAccount.selector, attacker));
+        vm.prank(attacker);
+        fixedToken.mint(address(this), 1000000 ether);
+    }
 }
