@@ -31,7 +31,7 @@ This repository contains modular audit examples, each structured to:
 ```bash
 forge install
 forge test -vvv
-
+```
 
 ## Foundry
 
