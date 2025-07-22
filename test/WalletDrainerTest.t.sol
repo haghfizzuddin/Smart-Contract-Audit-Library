@@ -10,6 +10,7 @@ contract DummyToken is ERC20 {
     constructor() ERC20("FakeToken", "FAKE") {
         // Remove minting to deployer, only use explicit mint()
     }
+
     function mint(address to, uint256 amount) external {
         _mint(to, amount);
     }
@@ -68,7 +69,6 @@ contract WalletDrainerTest is Test {
         assertEq(allowance, 0, "Safe wallet does not hijack allowance");
     }
 }
-
 
 // This test suite is designed to validate the phishing vulnerability in the WalletDrainer contract.
 // It simulates a scenario where a victim unknowingly approves a scammer to drain their tokens
